@@ -1,6 +1,6 @@
-# ryan-cli
+# kaloraat
 
-## Helper tool for generating routes/controllers/models/auth in node and react projects
+## Helper tool for generating routes, controllers, models and authentication in node and react projects
 
 ### how to use
 
