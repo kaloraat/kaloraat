@@ -1,0 +1,23 @@
+{
+  "name": "@kaloraat/ryan-cli",
+  "version": "1.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bin": {
+    "kaloraat-make-route": "./route/bin/index.js",
+    "kaloraat-make-model": "./model/bin/index.js"
+  },
+  "dependencies": {
+    "boxen": "4.0",
+    "chalk": "2.4",
+    "prompt": "^1.2.0",
+    "prompt-sync": "^4.2.0",
+    "yargs": "13.2"
+  }
+}

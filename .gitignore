@@ -1,0 +1,9 @@
+/node_modules
+/.DS_Store
+/howto.md
+/.env
+/routes
+/models
+/controllers
+/helpers
+/middlewares
