@@ -7,3 +7,4 @@
 /controllers
 /helpers
 /middlewares
+/auth/bin/server/node_modules

@@ -1,6 +1,10 @@
 #!/usr/bin/env node
 
 const mongoose = require("mongoose");
+const prompt = require("prompt-sync")({ sigint: true });
+const fs = require("fs");
+const path = require("path");
+const chalk = require("chalk");
 
 const modelFileContent = (name) => `
 const ${name}Schema = new mongoose.Schema(

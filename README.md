@@ -8,6 +8,10 @@
 
 `npm i kaloraat -g`
 
+## Generate Node.js server/API with full authentication in seconds
+
+`kaloraat-make-auth`
+
 ##### Generate route and controller file
 
 `kaloraat-make-route`
