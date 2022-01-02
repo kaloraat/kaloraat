@@ -8,3 +8,4 @@
 /helpers
 /middlewares
 /auth/bin/server/node_modules
+/auth/bin/server/.DS_Store
