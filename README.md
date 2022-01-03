@@ -6,11 +6,13 @@
 
 #### Install
 
-`npm i kaloraat -g`
+`npm i -g kaloraat`
 
 ## Generate Node.js server/API with full authentication in seconds
 
-`kaloraat-make-auth`
+### Crerate a project folder for your server/API
+
+#### Get insnide your project folder and run `kaloraat-make-auth`
 
 ###### Running authentication project
 

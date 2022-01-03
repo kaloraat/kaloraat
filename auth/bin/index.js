@@ -327,8 +327,12 @@ http.listen(port, () => console.log("Server running on port 8000"));
 `;
 
 //With readline
-let name = prompt("Write a name to your server/API: ");
-name = name.toLowerCase();
+// let name = prompt("Write a name to your server/API: ");
+// name = name.toLowerCase();
+
+console.log(
+  chalk.green.bold(`Generating node server/API with full authentication...`)
+);
 
 // package.json
 fs.writeFile(
@@ -418,7 +422,7 @@ fs.writeFile(path.join(`${process.cwd()}`, `index.js`), serverFile(), (err) => {
 setTimeout(() => {
   console.log(
     chalk.green.bold(
-      `Once you update .env variables, Your server "${name}" with full authentication will be ready to use. Just type npm install && npm start and see your API running in "http://localhost:8000/api"`
+      `Once you update .env variables, Your server/API with full authentication will be ready to use. Just type npm install && npm start and see your API running in "http://localhost:8000/api"`
     )
   );
 }, 2000);
