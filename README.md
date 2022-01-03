@@ -22,6 +22,7 @@
 - Visit http://localhost:8000/api to check your server/API running
 - Each time you add a new route file inside `routes` folder, make sure to import and apply as middleware in `index.js`
 - For reset password email, make sure to check spam folder in your mailbox
+- To see all available API endpoints, checkout `routes/auth.js`
 
 ##### Generate route and controller file
 
