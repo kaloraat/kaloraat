@@ -7,5 +7,5 @@
 /controllers
 /helpers
 /middlewares
-/auth/bin/server/node_modules
-/auth/bin/server/.DS_Store
+/server/node_modules
+/server/.DS_Store

@@ -12,6 +12,13 @@
 
 `kaloraat-make-auth`
 
+###### Running authentication project
+
+- Update your `.env` files with real mongodb connection uri and sendgrid api keys
+- uncomment `mongoose.connect` function in `index.js`
+- uncomment `sgMail.setApiKey()` in `controllers/auth.js`
+- then run `npm start`
+
 ##### Generate route and controller file
 
 `kaloraat-make-route`

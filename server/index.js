@@ -1,15 +1,14 @@
-import express from "express";
-import mongoose from "mongoose";
-import cors from "cors";
-import { readdirSync } from "fs";
-
-const morgan = require("morgan");
 require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
+const morgan = require("morgan");
+const { readdirSync } = require("fs");
 
 const app = express();
 const http = require("http").createServer(app);
 
-// db
+// db connection
 mongoose
   .connect(process.env.DATABASE)
   .then(() => console.log("DB connected"))
@@ -21,8 +20,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(morgan("dev"));
 
-// route
-readdirSync("./routes").map((r) => app.use("/api", require("./routes/" + r)));
+// routes
+readdirSync("./routes").map((r) => app.use("/api", require(`./routes/${r}`)));
 
 const port = process.env.PORT || 8000;
 

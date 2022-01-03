@@ -1,6 +1,6 @@
 {
   "name": "kaloraat",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -15,10 +15,21 @@
     "kaloraat-make-auth": "./auth/bin/index.js"
   },
   "dependencies": {
+    "@sendgrid/mail": "^7.6.0",
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "express-jwt": "^6.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.12",
+    "morgan": "^1.10.0",
+    "nanoid": "^2.1.11",
+    "shortid": "^2.2.16",
     "boxen": "4.0",
     "chalk": "2.4",
     "fs-extra": "^10.0.0",
-    "mongoose": "^6.1.4",
     "prompt": "^1.2.0",
     "prompt-sync": "^4.2.0",
     "yargs": "13.2"
