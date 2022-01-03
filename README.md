@@ -15,9 +15,11 @@
 ###### Running authentication project
 
 - Update your `.env` files with real mongodb connection uri and sendgrid api keys
-- uncomment `mongoose.connect` function in `index.js`
-- uncomment `sgMail.setApiKey()` in `controllers/auth.js`
-- then run `npm start`
+- Get inside your project and run `npm install`
+- Then run `npm start` to start your node server/API with full authentication
+- Visit http://localhost:8000/api to check your server/API running
+- Each time you add a new route file inside `routes` folder, make sure to import and apply as middleware in `index.js`
+- For reset password email, make sure to check spam folder in your mailbox
 
 ##### Generate route and controller file
 
