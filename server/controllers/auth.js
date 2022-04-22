@@ -1,7 +1,8 @@
-const User = require("../models/user");
-const jwt = require("jsonwebtoken");
-const { hashPassword, comparePassword } = require("../helpers/auth");
-const nanoid = require("nanoid");
+import User from "../models/user";
+import { hashPassword, comparePassword } from "../helpers/auth";
+import jwt from "jsonwebtoken";
+import nanoid from "nanoid";
+
 // sendgrid
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_KEY);
@@ -113,11 +114,8 @@ exports.forgotPassword = async (req, res) => {
   const emailData = {
     from: process.env.EMAIL_FROM,
     to: user.email,
-    subject: `Password reset code`,
-    html: `
-            <h4>Enter this code in the app to reste password</h4>
-            <h1 style="color:red;">${resetCode}</h1>
-          `,
+    subject: "Password reset code",
+    html: `<h1>Your password  reset code is: ${resetCode}</h1>`,
   };
   // send email
   try {

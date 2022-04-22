@@ -13,7 +13,7 @@ const packageJson = () => `
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon -r esm index.js"
   },
   "keywords": [],
   "author": "",
@@ -29,15 +29,14 @@ const packageJson = () => `
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.12",
     "morgan": "^1.10.0",
-    "nanoid": "^2.1.11",
-    "navigator": "^1.0.1",
-    "shortid": "^2.2.16"
+    "nanoid": "^2.1.11"
   }
 }
 `;
 
 const envFile = () => `
-DATABASE=mongodb+srv://dbuser:dbpassword@your_db_name.pbn7j.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+# DATABASE=mongodb+srv://dbuser:dbpassword@your_db_name.pbn7j.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+DATABASE=mongodb://localhost:27017/dbname
 JWT_SECRET=some_secret_letters_numbers
 SENDGRID_KEY=SG.your.secret-key
 EMAIL_FROM=yourname@gmail.com
@@ -49,7 +48,7 @@ node_modules
 `;
 
 const userModelFile = () => `
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const userSchema = new Schema(
@@ -84,11 +83,11 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("User", userSchema);
+export default mongoose.model("User", userSchema);
 `;
 
 const helpersAuthFile = () => `
-const bcrypt = require("bcrypt");
+import bcrypt from 'bcrypt';
 
 exports.hashPassword = (password) => {
   return new Promise((resolve, reject) => {
@@ -112,10 +111,11 @@ exports.comparePassword = (password, hashed) => {
 `;
 
 const authControllerFile = () => `
-const User = require("../models/user");
-const jwt = require("jsonwebtoken");
-const { hashPassword, comparePassword } = require("../helpers/auth");
-const nanoid = require("nanoid");
+import User from "../models/user";
+import { hashPassword, comparePassword } from "../helpers/auth";
+import jwt from "jsonwebtoken";
+import nanoid from "nanoid";
+
 // sendgrid
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_KEY);
@@ -269,7 +269,7 @@ exports.resetPassword = async (req, res) => {
 `;
 
 const routesFile = () => `
-const express = require("express");
+import express from "express";
 
 const router = express.Router();
 
@@ -291,20 +291,20 @@ router.post("/signin", signin);
 router.post("/forgot-password", forgotPassword);
 router.post("/reset-password", resetPassword);
 
-module.exports = router;
+export default router;
 `;
 
 const serverFile = () => `
 require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
-const mongoose = require("mongoose");
-const authRoutes = require("./routes/auth");
+import express from "express";
+import cors from "cors";
+import mongoose from "mongoose";
+
+import authRoutes from "./routes/auth";
 
 const morgan = require("morgan");
 
 const app = express();
-const http = require("http").createServer(app);
 
 // db connection
 mongoose
@@ -321,9 +321,7 @@ app.use(morgan("dev"));
 // route middlewares
 app.use("/api", authRoutes);
 
-const port = process.env.PORT || 8000;
-
-http.listen(port, () => console.log("Server running on port 8000"));
+app.listen(8000, () => console.log("Server running on port 8000"));
 `;
 
 //With readline
@@ -422,7 +420,7 @@ fs.writeFile(path.join(`${process.cwd()}`, `index.js`), serverFile(), (err) => {
 setTimeout(() => {
   console.log(
     chalk.green.bold(
-      `Once you update .env variables, Your server/API with full authentication will be ready to use. Just type npm install && npm start and see your API running in "http://localhost:8000/api"`
+      `Update .env variables then run npm install && npm start to see your API running in "http://localhost:8000/api"`
     )
   );
 }, 2000);
