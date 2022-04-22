@@ -7,7 +7,7 @@ import nanoid from "nanoid";
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_KEY);
 
-exports.signup = async (req, res) => {
+export const signup = async (req, res) => {
   console.log("HIT SIGNUP");
   try {
     // validation
@@ -62,7 +62,7 @@ exports.signup = async (req, res) => {
   }
 };
 
-exports.signin = async (req, res) => {
+export const signin = async (req, res) => {
   // console.log(req.body);
   try {
     const { email, password } = req.body;
@@ -97,7 +97,7 @@ exports.signin = async (req, res) => {
   }
 };
 
-exports.forgotPassword = async (req, res) => {
+export const forgotPassword = async (req, res) => {
   const { email } = req.body;
   // find user by email
   const user = await User.findOne({ email });
@@ -128,7 +128,7 @@ exports.forgotPassword = async (req, res) => {
   }
 };
 
-exports.resetPassword = async (req, res) => {
+export const resetPassword = async (req, res) => {
   try {
     const { email, password, resetCode } = req.body;
     // find user based on email and resetCode
