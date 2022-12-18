@@ -34,12 +34,12 @@ const packageJson = () => `
 }
 `;
 
-const envFile = () => `
-# DATABASE=mongodb+srv://dbuser:dbpassword@your_db_name.pbn7j.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
-DATABASE=mongodb://localhost:27017/dbname
-JWT_SECRET=some_secret_letters_numbers
-SENDGRID_KEY=SG.your.secret-key
-EMAIL_FROM=yourname@gmail.com
+const configFile = () => `
+// const DATABASE = "mongodb+srv://dbuser:dbpassword@your_db_name.pbn7j.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const DATABASE = "mongodb://localhost:27017/dbname";
+const JWT_SECRET = "some_secret_letters_numbers";
+const SENDGRID_KEY = "SG.your.secret-key";
+const EMAIL_FROM = "yourname@gmail.com";
 `;
 
 const gitIgnoreFile = () => `
@@ -296,10 +296,10 @@ export default router;
 `;
 
 const serverFile = () => `
-require("dotenv").config();
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
+import { DATABASE } from "./config";
 
 import authRoutes from "./routes/auth";
 
@@ -308,8 +308,9 @@ const morgan = require("morgan");
 const app = express();
 
 // db connection
+mongoose.set("strictQuery", false); // required for version 6
 mongoose
-  .connect(process.env.DATABASE)
+  .connect(DATABASE)
   .then(() => console.log("DB connected"))
   .catch((err) => console.log("DB CONNECTION ERROR: ", err));
 
@@ -343,10 +344,14 @@ fs.writeFile(
   }
 );
 // .env
-fs.writeFile(path.join(`${process.cwd()}`, `.env`), envFile(), (err) => {
-  if (err) throw err;
-  else console.log(chalk.bold(`.env is created`));
-});
+fs.writeFile(
+  path.join(`${process.cwd()}`, `config.js`),
+  configFile(),
+  (err) => {
+    if (err) throw err;
+    else console.log(chalk.bold(`config.js is created`));
+  }
+);
 // .gitignore
 fs.writeFile(
   path.join(`${process.cwd()}`, `.gitignore`),
