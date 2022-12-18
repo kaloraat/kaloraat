@@ -7,5 +7,4 @@
 /controllers
 /helpers
 /middlewares
-/server/node_modules
-/server/.DS_Store
+/server
