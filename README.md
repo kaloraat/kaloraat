@@ -1,6 +1,8 @@
-# kaloraat
+## Generat NodeJs MongoDB API with Full Authentication in seconds 🐸
 
-## Helper tool for generating NodeJs API with Full Authentication 🐸
+- Ready to use API with login and register system
+- Includes forgot password and reset password feature
+- Folder structure includig routes and controllers
 
 #### Install Globally
 
@@ -18,7 +20,7 @@ kaloraat-make-auth
 
 ###### Running project
 
-- Update your `.env` files with real mongodb connection uri and sendgrid api keys
+- Update `config.js` with real mongodb connection uri and sendgrid api keys (for sending email)
 - Get inside your project and run `npm install`
 - Then run `npm start` to start your node server/API with full authentication
 - Visit http://localhost:8000/api to check your server/API running
